@@ -111,8 +111,8 @@
 ! Needs to be kept in line with ESMC_ATT_UNGRIDDED_DIM_LABELS and
 ! ESMC_ATT_UNGRIDDED_DIM_LABELS in ../include/ESMCI_Util.h
 
-      character(32), parameter :: ESMF_ATT_GRIDDED_DIM_LABELS   = 'ESMF:gridded_dim_labels'
-      character(32), parameter :: ESMF_ATT_UNGRIDDED_DIM_LABELS = 'ESMF:ungridded_dim_labels'
+      character(32), parameter :: ESMF_ATT_GRIDDED_DIM_LABELS   = 'ESMF:gridded_dim_labels         '
+      character(32), parameter :: ESMF_ATT_UNGRIDDED_DIM_LABELS = 'ESMF:ungridded_dim_labels       '
 
 ! Needs to be kept in line with MESH_POLYBREAK_IND
 ! in ESMCI_Mesh.h
@@ -244,11 +244,9 @@
                    ESMF_KIND_C8 = selected_real_kind(3,25), &
                    ESMF_KIND_C16 = selected_real_kind(6,45)
 
-      integer :: defaultIntegerDummy    ! Needed to define ESMF_KIND_I
-      real    :: defaultRealDummy       ! Needed to define ESMF_KIND_R
       integer, parameter :: &
-                   ESMF_KIND_I = kind(defaultIntegerDummy), &
-                   ESMF_KIND_R = kind(defaultRealDummy)
+                   ESMF_KIND_I = kind(0), &
+                   ESMF_KIND_R = kind(0.0)
 
 !------------------------------------------------------------------------------
 !

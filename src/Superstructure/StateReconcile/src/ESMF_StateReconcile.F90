@@ -1119,8 +1119,8 @@ contains
     end if
 
     needs_count = transfer (  &
-        source=obj_buffer(0:ESMF_SIZEOF_DEFINT-1),  &
-        mold  =needs_count)
+        obj_buffer(0:ESMF_SIZEOF_DEFINT-1),  &
+        needs_count)
     if (debug) then
       print *, ESMF_METHOD, ': PET', mypet, ', needs_count =', needs_count
     end if
@@ -1140,11 +1140,11 @@ contains
 #if !defined (__G95__)
       offset_table(i) = transfer (  &
           obj_buffer(idx:idx+ESMF_SIZEOF_DEFINT-1),  &
-          mold=needs_count)
+          needs_count)
       idx = idx + ESMF_SIZEOF_DEFINT
       type_table(i) = transfer (  &
           obj_buffer(idx:idx+ESMF_SIZEOF_DEFINT-1),  &
-          mold=needs_count)
+          needs_count)
       idx = idx + ESMF_SIZEOF_DEFINT
 #else
       ! g95 snapshots prior to April 4, 2010 have a bug in TRANSFER.
@@ -1299,8 +1299,8 @@ contains
 
 #if !defined (__G95__)
     buffer_offset = transfer (  &
-        source=obj_buffer((i+1)*ESMF_SIZEOF_DEFINT:(i+2)*ESMF_SIZEOF_DEFINT-1),  &
-        mold  =i)
+        obj_buffer((i+1)*ESMF_SIZEOF_DEFINT:(i+2)*ESMF_SIZEOF_DEFINT-1),  &
+        i)
 #else
       ! g95 snapshots prior to April 4, 2010 have a bug in TRANSFER.
       ! The following works around it.
@@ -2805,12 +2805,12 @@ contains
       end if
 
       obj_buffer(0:ESMF_SIZEOF_DEFINT-1) = transfer (  &
-          source=needs_count,  &
-          mold  =obj_buffer(0:ESMF_SIZEOF_DEFINT-1))
+          needs_count,  &
+          obj_buffer(0:ESMF_SIZEOF_DEFINT-1))
 
       if (debug) then
         needs_count_debug = transfer(source=obj_buffer(0:ESMF_SIZEOF_DEFINT-1), &
-          mold=needs_count_debug)
+          needs_count_debug)
         write(logmsg, *) "needs_count_debug=", needs_count_debug
         call ESMF_LogWrite(trim(logmsg))
       end if
@@ -2831,14 +2831,14 @@ contains
         end if
         obj_buffer(i:i+ESMF_SIZEOF_DEFINT-1) =  &  ! Buffer offset
             transfer (  &
-            source=buffer_offset,  &
-            mold  =obj_buffer(0:ESMF_SIZEOF_DEFINT-1))
+            buffer_offset,  &
+            obj_buffer(0:ESMF_SIZEOF_DEFINT-1))
         i = i + ESMF_SIZEOF_DEFINT
 
         obj_buffer(i:i+ESMF_SIZEOF_DEFINT-1) =  &  ! Item type
             transfer (  &
-            source=type_table(item),  &
-            mold  =obj_buffer(0:ESMF_SIZEOF_DEFINT-1))
+            type_table(item),  &
+            obj_buffer(0:ESMF_SIZEOF_DEFINT-1))
         i = i + ESMF_SIZEOF_DEFINT
 
         obj_buffer(buffer_offset:buffer_offset+lbufsize-1) =  &  ! Serialized item
@@ -3278,7 +3278,7 @@ call ESMF_LogWrite("ESMF_ReconcileZappedProxies(): found FieldBundle: "//trim(na
 
       ! Workaround routine for g95 TRANSFER bug.
 
-      i = transfer (source=source, mold=i)
+      i = transfer (source, i)
 
     end function ESMF_Reconcile_g95_getint
 #endif

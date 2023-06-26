@@ -104,7 +104,7 @@
 !
 !EOPI
 
-      ESMF_UtilArray2String = transfer (charArray, mold=ESMF_UtilArray2String)
+      ESMF_UtilArray2String = transfer (charArray, ESMF_UtilArray2String)
 
     end function ESMF_UtilArray2String
 
@@ -136,7 +136,7 @@
 !
 !EOPI
 
-      ESMF_UtilString2Array = transfer (string, mold=ESMF_UtilString2Array)
+      ESMF_UtilString2Array = transfer (string, ESMF_UtilString2Array)
 
       end function ESMF_UtilString2Array
 
