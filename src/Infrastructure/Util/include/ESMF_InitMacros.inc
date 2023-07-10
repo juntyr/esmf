@@ -55,7 +55,9 @@ automatic initialization of types.
 
 #ifdef ESMF_NO_INITIALIZERS
 
+#if 0
  Error FOUND A CONFIGURATION THAT USES ESMF_NO_INITIALIZERS
+#endif
 
 #define ESMF_INIT_DECLARE  ESMF_INIT_TYPE :: isInit
 #define ESMF_INIT_CHECK_SET_SHALLOW(fget,finit,var) \

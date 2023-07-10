@@ -48,7 +48,7 @@
 #include <cstdlib>
 #if (defined ESMF_OS_Linux || defined ESMF_OS_Unicos)
 #include <malloc.h>
-#include <execinfo.h>
+// #include <execinfo.h>
 #endif
 #if (defined ESMF_OS_Darwin)
 #include <mach/mach.h>
@@ -2468,16 +2468,16 @@ void VM::logBacktrace(
   int rc = ESMC_RC_NOT_IMPL;   // final return code
 
 #if (defined ESMF_OS_Linux || defined ESMF_OS_Unicos)
-  const int size=1000;
-  void *buffer[size];
-  int count = backtrace(buffer, size);
-  char **symbols = backtrace_symbols(buffer, count);
-  for (int i=0; i<count; i++){
-    std::stringstream info;
-    info << prefix << " - Backtrace: " << symbols[i];
-    ESMC_LogDefault.Write(info, msgType);
-  }
-  free(symbols);
+  // const int size=1000;
+  // void *buffer[size];
+  // int count = backtrace(buffer, size);
+  // char **symbols = backtrace_symbols(buffer, count);
+  // for (int i=0; i<count; i++){
+  //   std::stringstream info;
+  //   info << prefix << " - Backtrace: " << symbols[i];
+  //   ESMC_LogDefault.Write(info, msgType);
+  // }
+  // free(symbols);
 #endif
 
   // return successfully
@@ -2656,10 +2656,11 @@ void VM::logMemInfo(
   FILE *stderrOrig = stderr;  // keep for restoring later
   char *buf = NULL;
   size_t len;
-  FILE *fp = stderr = open_memstream(&buf, &len); // redirect stderr
+  // FILE *fp = stderr = open_memstream(&buf, &len); // redirect stderr
+  FILE *fp = open_memstream(&buf, &len); // redirect stderr
   malloc_stats();
-  fflush(stderr);
-  stderr = stderrOrig;  // restore original stderr
+  // fflush(stderr);
+  // stderr = stderrOrig;  // restore original stderr
   fflush(fp);
   fclose(fp); // must close before free(buf), b/c buf may re-alloc!
   std::string malloc_stats_output;

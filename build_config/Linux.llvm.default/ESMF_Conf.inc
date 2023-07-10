@@ -9,3 +9,6 @@ Prediction, Los Alamos National Laboratory, Argonne National Laboratory,
 NASA Goddard Space Flight Center.
 Licensed under the University of Illinois-NCSA License.
 #endif
+
+#define ESMF_NO_INITIALIZERS 1
+#define ESMF_NO_F2018ASSUMEDTYPE 1
