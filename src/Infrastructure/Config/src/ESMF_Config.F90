@@ -211,8 +211,8 @@
           sequence
 #endif
           private              
-          character, pointer      :: label(:) => null () ! attribute label
-          logical                 :: used  = .false.  ! attribute used (retrieved) or not
+          character, pointer      :: label(:) !=> null () ! attribute label
+          logical                 :: used  != .false.  ! attribute used (retrieved) or not
           ESMF_INIT_DECLARE
        end type ESMF_ConfigAttrUsed
 
@@ -223,15 +223,15 @@
 #endif
 #endif
           !private              
-          character(len=NBUF_MAX),pointer :: buffer => null ()    ! hold the whole file
-          character(len=LSZ),     pointer :: this_line => null () ! the current line
+          character(len=NBUF_MAX),pointer :: buffer !=> null ()    ! hold the whole file
+          character(len=LSZ),     pointer :: this_line !=> null () ! the current line
           integer :: nbuf                              ! actual size of buffer 
           integer :: next_line                         ! index_ for next line 
                                                        !   on buffer
           integer :: value_begin                       ! index of beginning of
                                                        !   value
           type(ESMF_ConfigAttrUsed), dimension(:), &
-                                  pointer :: attr_used => null () ! used attributes table
+                                  pointer :: attr_used !=> null () ! used attributes table
           integer :: nattr                             ! number of attributes
                                                        !   in the "used" table
           character(len=LSZ)          :: current_attr  ! the current attr label
@@ -246,7 +246,7 @@
 #endif
 #endif
           !private       
-          type (ESMF_ConfigClass), pointer :: cptr => null ()
+          type (ESMF_ConfigClass), pointer :: cptr !=> null ()
           ESMF_INIT_DECLARE
        end type ESMF_Config
 
