@@ -57,8 +57,8 @@ include "ESMF_InfoCDefGeneric.F90"
 ! =============================================================================
 
 type ESMF_Info
-  type(C_PTR) :: ptr = C_NULL_PTR
-  logical :: is_view = .false.
+  type(C_PTR) :: ptr != C_NULL_PTR
+  logical :: is_view != .false.
 end type ESMF_Info
 
 ! =============================================================================
