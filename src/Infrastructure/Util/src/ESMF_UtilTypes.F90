@@ -43,7 +43,7 @@
 !------------------------------------------------------------------------------
 
 ! !USES:
-  use iso_c_binding
+  use, intrinsic :: iso_c_binding
       ! inherit from ESMF base class
 !     use ESMF_UtilTypesMod
  !!  use ESMF_InitMacrosMod Commented out to prevent circular dependency
